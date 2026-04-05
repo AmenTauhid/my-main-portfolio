@@ -36,22 +36,22 @@ export default function Home() {
           </p>
 
           {/* Big statement */}
-          <h1 className="font-[family-name:var(--font-jakarta-var)] text-3xl sm:text-4xl md:text-6xl lg:text-[5.2rem] leading-[1.15] tracking-tight max-w-4xl">
-            <span className="font-light">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[5.2rem] leading-[1.15] tracking-tight max-w-4xl">
+            <span className="font-[family-name:var(--font-crimson-var)] font-light">
               I design and build{" "}
             </span>
-            <span className="font-semibold bg-accent/20 px-1.5 sm:px-2 rounded-md">
+            <span className="font-[family-name:var(--font-jakarta-var)] font-semibold bg-accent/20 px-1.5 sm:px-2 rounded-md">
               software
             </span>
-            <span className="font-light">
+            <span className="font-[family-name:var(--font-crimson-var)] font-light">
               {" "}that{" "}
             </span>
             <br className="hidden md:block" />
-            <span className="font-light">
+            <span className="font-[family-name:var(--font-crimson-var)] font-light">
               works well{" "}
             </span>
             <span className="text-accent text-xl sm:text-3xl md:text-5xl">✦</span>
-            <span className="font-light">
+            <span className="font-[family-name:var(--font-crimson-var)] font-light">
               {" "}and feels right{" "}
             </span>
             <span className="text-accent text-lg sm:text-2xl md:text-4xl">✻</span>
