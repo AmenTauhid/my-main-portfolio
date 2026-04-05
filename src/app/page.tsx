@@ -15,7 +15,7 @@ export default function Home() {
       <BlurFade>
         <section className="max-w-[1400px] mx-auto px-6 md:px-10 pt-24 md:pt-12 pb-28 md:pb-44">
           {/* Top row: avatar left, get in touch right */}
-          <div className="flex items-start justify-between mb-16 md:mb-24">
+          <div className="flex items-start justify-between mb-12 md:mb-20">
             <AnimatedAvatar />
 
             <a
@@ -26,42 +26,41 @@ export default function Home() {
             </a>
           </div>
 
+          {/* Name */}
+          <p className="font-[family-name:var(--font-jakarta-var)] text-sm md:text-base font-medium text-text-secondary mb-6">
+            Ayman Tauhid
+          </p>
+
           {/* Big statement */}
-          <h1 className="text-4xl md:text-6xl lg:text-[5.2rem] leading-[1.15] tracking-tight max-w-4xl">
-            <span className="font-[family-name:var(--font-crimson-var)] font-light">
-              Hey, I build{" "}
+          <h1 className="font-[family-name:var(--font-jakarta-var)] text-3xl sm:text-4xl md:text-6xl lg:text-[5.2rem] leading-[1.15] tracking-tight max-w-4xl">
+            <span className="font-light">
+              I design and build{" "}
             </span>
-            <span className="font-[family-name:var(--font-jakarta-var)] font-semibold bg-accent/20 px-2 rounded-md">
-              full stack apps
+            <span className="font-semibold bg-accent/20 px-1.5 sm:px-2 rounded-md">
+              software
             </span>
-            <span className="font-[family-name:var(--font-crimson-var)] font-light">
-              {" "}that mix{" "}
+            <span className="font-light">
+              {" "}that{" "}
             </span>
             <br className="hidden md:block" />
-            <span className="font-[family-name:var(--font-crimson-var)] italic font-light">
-              machine learning{" "}
+            <span className="font-light">
+              works well{" "}
             </span>
-            <span className="text-accent text-3xl md:text-5xl">✦</span>
-            <span className="font-[family-name:var(--font-crimson-var)] font-light">
-              {" "}with{" "}
+            <span className="text-accent text-xl sm:text-3xl md:text-5xl">✦</span>
+            <span className="font-light">
+              {" "}and feels right{" "}
             </span>
-            <span className="font-[family-name:var(--font-crimson-var)] italic font-light">
-              mobile
-            </span>
-            <span className="font-[family-name:var(--font-crimson-var)] font-light">
-              {" "}
-            </span>
-            <span className="text-accent text-2xl md:text-4xl">✻</span>
+            <span className="text-accent text-lg sm:text-2xl md:text-4xl">✻</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-10 md:mt-14 text-base md:text-lg text-text-secondary max-w-xl leading-relaxed">
-            Along the way, I&apos;ve built patient analytics dashboards at UHN,
-            worked on device modules at Geotab, and published ML research at ACM.
+          <p className="mt-8 md:mt-12 text-sm sm:text-base md:text-lg text-text-secondary max-w-xl leading-relaxed">
+            Full stack, mobile, and ML. I like working across the whole stack
+            because the best products come from people who understand every layer.
           </p>
 
           {/* Links row */}
-          <div className="flex flex-wrap items-center gap-3 mt-8">
+          <div className="flex flex-wrap items-center gap-3 mt-6 md:mt-8">
             <a
               href="https://www.linkedin.com/in/aymantauhid/"
               target="_blank"
