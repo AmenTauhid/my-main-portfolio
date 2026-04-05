@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const FORMSPREE_URL = "https://formspree.io/f/YOUR_FORM_ID";
+const FORMSPREE_URL = `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`;
 
 export default function ContactForm({
   open,
