@@ -2,7 +2,11 @@
 
 import ScrollReveal from "./ScrollReveal";
 
-export default function Footer() {
+export default function Footer({
+  onContactOpen,
+}: {
+  onContactOpen?: () => void;
+}) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -27,9 +31,10 @@ export default function Footer() {
         <div className="flex justify-center mt-10">
           <button
             onClick={scrollToTop}
+            aria-label="Scroll back to top of page"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border text-sm hover:border-text transition-colors"
           >
-            <span>↑</span> Back to top
+            <span aria-hidden="true">↑</span> Back to top
           </button>
         </div>
       </div>
@@ -41,6 +46,7 @@ export default function Footer() {
             href="https://www.linkedin.com/in/aymantauhid/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn profile (opens in new tab)"
             className="text-sm text-text-secondary hover:text-text transition-colors"
           >
             LinkedIn
@@ -49,10 +55,19 @@ export default function Footer() {
             href="https://github.com/AmenTauhid"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="GitHub profile (opens in new tab)"
             className="text-sm text-text-secondary hover:text-text transition-colors"
           >
             GitHub
           </a>
+          {onContactOpen && (
+            <button
+              onClick={onContactOpen}
+              className="text-sm text-text-secondary hover:text-text transition-colors"
+            >
+              Get in touch
+            </button>
+          )}
         </div>
       </div>
     </footer>

@@ -7,31 +7,37 @@ const roles = [
     description: "Full stack development",
     company: "Centre for Applied AI (UHN)",
     period: "2025",
+    current: true,
   },
   {
     description: "Mobile development, iOS & Android",
     company: "Geotab",
     period: "2025",
+    current: false,
   },
   {
     description: "Full stack, deep learning",
     company: "Oakville Centre For Vision",
     period: "2024",
+    current: false,
   },
   {
     description: "ML engineering, OCR models",
     company: "Accolite Digital",
     period: "2023",
+    current: false,
   },
   {
     description: "ML research, published at ACM",
     company: "Centre for Applied AI (TELUS)",
     period: "2022 - 2023",
+    current: false,
   },
   {
     description: "Honours BSc, Mobile Computing",
     company: "Sheridan College",
     period: "2021 - 2025",
+    current: false,
   },
 ];
 
@@ -50,8 +56,11 @@ export default function WorkHistory() {
         {roles.map((role, i) => (
           <ScrollReveal key={role.company} delay={i * 0.06}>
             <div className="grid grid-cols-1 sm:grid-cols-[45%_40%_15%] gap-2 sm:gap-0 items-baseline py-6 border-b border-border">
-              <span className="text-base md:text-lg text-text">
+              <span className="text-base md:text-lg text-text flex items-center gap-2">
                 {role.description}
+                {role.current && (
+                  <span className="inline-block w-2 h-2 rounded-full bg-accent shrink-0" title="Current role" />
+                )}
               </span>
               <span className="font-[family-name:var(--font-jakarta-var)] text-base md:text-lg font-medium">
                 {role.company}

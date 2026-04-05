@@ -38,6 +38,7 @@ export default function ProjectCard({
       <Link href={`/projects/${slug}`} className="group block">
         <motion.div
           whileHover={{ scale: 1.03, y: -4 }}
+          whileTap={{ scale: 0.98 }}
           transition={springConfig}
           className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-surface"
         >

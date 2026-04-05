@@ -16,7 +16,7 @@ export default function BackstorySection() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <p className="font-[family-name:var(--font-jetbrains-var)] text-sm leading-relaxed text-text-secondary">
+          <p className="text-sm leading-relaxed text-text-secondary">
             I&apos;ve worked across full-stack web, native
             mobile (iOS and Android), and machine learning.
             At UHN I built patient analytics dashboards
@@ -25,7 +25,7 @@ export default function BackstorySection() {
             deep learning models for medical eye-tracking
             software.
           </p>
-          <p className="font-[family-name:var(--font-jetbrains-var)] text-sm leading-relaxed text-text-secondary mt-4">
+          <p className="text-sm leading-relaxed text-text-secondary mt-4">
             I tend to gravitate toward problems where I get
             to build the whole thing, from the data layer
             up to what the user actually sees.
@@ -33,7 +33,7 @@ export default function BackstorySection() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.2}>
-          <p className="font-[family-name:var(--font-jetbrains-var)] text-sm leading-relaxed text-text-secondary">
+          <p className="text-sm leading-relaxed text-text-secondary">
             My earliest memory of building is messing around
             with code on a family computer, trying to make
             things move on screen. That curiosity turned into
@@ -41,7 +41,7 @@ export default function BackstorySection() {
             paper at ACM MSWIM &apos;23 on Bluetooth indoor
             localization.
           </p>
-          <p className="font-[family-name:var(--font-jetbrains-var)] text-sm leading-relaxed text-text-secondary mt-4">
+          <p className="text-sm leading-relaxed text-text-secondary mt-4">
             Since then, I&apos;ve been chasing that same feeling
             of making something work for the first time.
           </p>

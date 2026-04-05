@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm, ValidationError } from "@formspree/react";
 
@@ -16,6 +16,7 @@ export default function ContactForm({
   const [loadTime] = useState(Date.now());
   const formRef = useRef<HTMLFormElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   // Close on Escape
   useEffect(() => {
@@ -26,10 +27,15 @@ export default function ContactForm({
     return () => document.removeEventListener("keydown", handleKey);
   }, [open, onClose]);
 
-  // Lock body scroll when open
+  // Lock body scroll + focus management
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
+      // Move focus into dialog
+      setTimeout(() => {
+        const firstInput = dialogRef.current?.querySelector("input");
+        if (firstInput) (firstInput as HTMLElement).focus();
+      }, 100);
     } else {
       document.body.style.overflow = "";
     }
@@ -38,13 +44,30 @@ export default function ContactForm({
     };
   }, [open]);
 
+  // Focus trap
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key !== "Tab" || !dialogRef.current) return;
+      const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+        'button, [href], input, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    },
+    []
+  );
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Bot check 1: honeypot field filled
     if (honeypot) return;
-
-    // Bot check 2: submitted too fast (under 3 seconds)
     if (Date.now() - loadTime < 3000) return;
 
     const form = formRef.current;
@@ -55,13 +78,9 @@ export default function ContactForm({
     const email = formData.get("email") as string;
     const message = formData.get("message") as string;
 
-    // Bot check 3: empty required fields
     if (!name.trim() || !email.trim() || !message.trim()) return;
-
-    // Bot check 4: basic email format
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
 
-    // Pass to Formspree
     await handleFormspreeSubmit(e);
   };
 
@@ -80,6 +99,11 @@ export default function ContactForm({
           }}
         >
           <motion.div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-title"
+            onKeyDown={handleKeyDown}
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
@@ -87,14 +111,21 @@ export default function ContactForm({
             className="w-full max-w-md bg-bg border border-border rounded-2xl p-6 md:p-8 shadow-2xl"
           >
             <div className="flex items-center justify-between mb-6">
-              <h2 className="font-[family-name:var(--font-jakarta-var)] text-lg font-semibold">
+              <h2
+                id="contact-title"
+                className="font-[family-name:var(--font-jakarta-var)] text-lg font-semibold"
+              >
                 Get in touch
               </h2>
               <button
                 onClick={onClose}
+                aria-label="Close contact form"
                 className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface transition-colors text-text-secondary"
               >
-                ✕
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <line x1="1" y1="1" x2="13" y2="13" />
+                  <line x1="13" y1="1" x2="1" y2="13" />
+                </svg>
               </button>
             </div>
 
@@ -116,7 +147,6 @@ export default function ContactForm({
               </div>
             ) : (
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
-                {/* Honeypot - hidden from humans, visible to bots */}
                 <input
                   type="text"
                   name="_gotcha"
@@ -125,48 +155,49 @@ export default function ContactForm({
                   className="hidden"
                   tabIndex={-1}
                   autoComplete="off"
+                  aria-hidden="true"
                 />
 
                 <div>
-                  <label htmlFor="name" className="block text-sm text-text-secondary mb-1.5">
+                  <label htmlFor="contact-name" className="block text-sm text-text-secondary mb-1.5">
                     Name
                   </label>
                   <input
-                    id="name"
+                    id="contact-name"
                     name="name"
                     type="text"
                     required
-                    className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-sm text-text placeholder:text-text-secondary/50 focus:outline-none focus:border-accent transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-sm text-text placeholder:text-text-secondary/70 focus:outline-none focus:border-accent transition-colors"
                     placeholder="Your name"
                   />
                   <ValidationError prefix="Name" field="name" errors={state.errors} className="text-xs text-red-500 mt-1" />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm text-text-secondary mb-1.5">
+                  <label htmlFor="contact-email" className="block text-sm text-text-secondary mb-1.5">
                     Email
                   </label>
                   <input
-                    id="email"
+                    id="contact-email"
                     name="email"
                     type="email"
                     required
-                    className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-sm text-text placeholder:text-text-secondary/50 focus:outline-none focus:border-accent transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-sm text-text placeholder:text-text-secondary/70 focus:outline-none focus:border-accent transition-colors"
                     placeholder="you@example.com"
                   />
                   <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-500 mt-1" />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm text-text-secondary mb-1.5">
+                  <label htmlFor="contact-message" className="block text-sm text-text-secondary mb-1.5">
                     Message
                   </label>
                   <textarea
-                    id="message"
+                    id="contact-message"
                     name="message"
                     required
                     rows={4}
-                    className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-sm text-text placeholder:text-text-secondary/50 focus:outline-none focus:border-accent transition-colors resize-none"
+                    className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-sm text-text placeholder:text-text-secondary/70 focus:outline-none focus:border-accent transition-colors resize-none"
                     placeholder="What's on your mind?"
                   />
                   <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-500 mt-1" />

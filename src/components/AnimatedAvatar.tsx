@@ -136,25 +136,55 @@ export default function AnimatedAvatar() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -4, scale: 0.9 }}
             transition={{ type: "spring", stiffness: 500, damping: 25 }}
-            className="absolute left-[calc(100%+12px)] top-0 z-20 max-w-[220px] min-w-[120px]"
+            className="absolute left-[calc(100%+12px)] top-0 z-20 max-w-[220px] min-w-[120px] hidden sm:block"
+            role="status"
+            aria-live="polite"
           >
             <div className="relative bg-surface border border-border rounded-xl px-3.5 py-2.5 shadow-lg">
               <p className="text-xs leading-relaxed text-text font-[family-name:var(--font-jetbrains-var)]">
                 {bubble}
               </p>
-              {/* Tail pointing left */}
               <div className="absolute top-4 -left-[6px] w-3 h-3 bg-surface border-l border-b border-border rotate-45" />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
+      {/* Mobile bubble (below avatar) */}
+      <AnimatePresence>
+        {bubble && (
+          <motion.div
+            initial={{ opacity: 0, y: -4, scale: 0.85 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 500, damping: 25 }}
+            className="absolute top-full left-0 mt-2 z-20 max-w-[200px] min-w-[120px] sm:hidden"
+          >
+            <div className="relative bg-surface border border-border rounded-xl px-3.5 py-2.5 shadow-lg">
+              <p className="text-xs leading-relaxed text-text font-[family-name:var(--font-jetbrains-var)]">
+                {bubble}
+              </p>
+              <div className="absolute -top-[6px] left-4 w-3 h-3 bg-surface border-l border-t border-border rotate-45" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.div
-        className="relative cursor-pointer select-none"
+        role="button"
+        tabIndex={0}
+        aria-label="Click for a random fact"
+        className="relative cursor-pointer select-none rounded-full focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-4"
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.9, rotate: -8 }}
         transition={{ type: "spring", stiffness: 400, damping: 15 }}
         onClick={handleClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
       >
         {/* Glow behind */}
         <motion.div

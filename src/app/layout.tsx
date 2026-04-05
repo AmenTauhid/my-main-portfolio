@@ -59,8 +59,11 @@ export default function RootLayout({
     >
       <body className="min-h-screen antialiased">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <a href="#main-content" className="skip-to-content">
+            Skip to content
+          </a>
           <Navbar />
-          <main className="pt-16">{children}</main>
+          <main id="main-content" className="pt-16">{children}</main>
           <Footer />
           <SpeedInsights />
         </ThemeProvider>
