@@ -1,0 +1,125 @@
+"use client";
+
+import BlurFade from "@/components/BlurFade";
+import ScrollReveal from "@/components/ScrollReveal";
+import AnimatedAvatar from "@/components/AnimatedAvatar";
+import ProjectCard from "@/components/ProjectCard";
+import WorkHistory from "@/components/WorkHistory";
+import BackstorySection from "@/components/BackstorySection";
+import { projects } from "@/data/projects";
+
+export default function Home() {
+  return (
+    <div className="min-h-screen">
+      {/* ====== Hero Section ====== */}
+      <BlurFade>
+        <section className="max-w-[1400px] mx-auto px-6 md:px-10 pt-24 md:pt-12 pb-28 md:pb-44">
+          {/* Top row: avatar left, get in touch right */}
+          <div className="flex items-start justify-between mb-16 md:mb-24">
+            <AnimatedAvatar />
+
+            <a
+              href="mailto:hello@example.com"
+              className="hidden sm:inline-flex items-center gap-2 px-6 py-3 rounded-full bg-text text-bg text-sm font-medium hover:bg-accent hover:text-accent-dark transition-all duration-300"
+            >
+              Get in touch
+            </a>
+          </div>
+
+          {/* Big statement */}
+          <h1 className="text-4xl md:text-6xl lg:text-[5.2rem] leading-[1.15] tracking-tight max-w-4xl">
+            <span className="font-[family-name:var(--font-crimson-var)] font-light">
+              Hey, I build{" "}
+            </span>
+            <span className="font-[family-name:var(--font-jakarta-var)] font-semibold bg-accent/20 px-2 rounded-md">
+              full stack apps
+            </span>
+            <span className="font-[family-name:var(--font-crimson-var)] font-light">
+              {" "}that mix{" "}
+            </span>
+            <br className="hidden md:block" />
+            <span className="font-[family-name:var(--font-crimson-var)] italic font-light">
+              machine learning{" "}
+            </span>
+            <span className="text-accent text-3xl md:text-5xl">✦</span>
+            <span className="font-[family-name:var(--font-crimson-var)] font-light">
+              {" "}with{" "}
+            </span>
+            <span className="font-[family-name:var(--font-crimson-var)] italic font-light">
+              mobile
+            </span>
+            <span className="font-[family-name:var(--font-crimson-var)] font-light">
+              {" "}
+            </span>
+            <span className="text-accent text-2xl md:text-4xl">✻</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="mt-10 md:mt-14 text-base md:text-lg text-text-secondary max-w-xl leading-relaxed">
+            Along the way, I&apos;ve built patient analytics dashboards at UHN,
+            worked on device modules at Geotab, and published ML research at ACM.
+          </p>
+
+          {/* Links row */}
+          <div className="flex flex-wrap items-center gap-3 mt-8">
+            <a
+              href="https://www.linkedin.com/in/aymantauhid/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-text-secondary hover:text-text transition-colors"
+            >
+              LinkedIn ↗
+            </a>
+            <span className="text-border">·</span>
+            <a
+              href="https://github.com/AmenTauhid"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-text-secondary hover:text-text transition-colors"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href="mailto:hello@example.com"
+              className="sm:hidden inline-flex items-center gap-2 ml-auto px-5 py-2.5 rounded-full bg-text text-bg text-sm font-medium hover:bg-accent hover:text-accent-dark transition-all duration-300"
+            >
+              Get in touch
+            </a>
+          </div>
+        </section>
+      </BlurFade>
+
+      {/* ====== Featured Projects ====== */}
+      <section className="max-w-[1400px] mx-auto px-6 md:px-10 pb-24 md:pb-32">
+        <ScrollReveal>
+          <h2 className="font-[family-name:var(--font-jetbrains-var)] text-xs uppercase tracking-widest text-text-secondary mb-10">
+            Recent Projects
+          </h2>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+          {projects.map((project, i) => (
+            <ProjectCard
+              key={project.slug}
+              slug={project.slug}
+              title={project.title}
+              subtitle={project.subtitle}
+              disciplines={project.disciplines}
+              index={i}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* ====== Work History ====== */}
+      <div className="pb-24 md:pb-32">
+        <WorkHistory />
+      </div>
+
+      {/* ====== Backstory ====== */}
+      <div className="pb-24 md:pb-32">
+        <BackstorySection />
+      </div>
+    </div>
+  );
+}
