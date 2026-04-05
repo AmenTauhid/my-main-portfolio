@@ -31,9 +31,9 @@ export default function Home() {
           </div>
 
           {/* Name */}
-          <p className="font-[family-name:var(--font-jakarta-var)] text-sm md:text-base font-medium text-text-secondary mb-6">
+          <h2 className="font-[family-name:var(--font-jakarta-var)] text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight mb-6">
             Ayman Tauhid
-          </p>
+          </h2>
 
           {/* Big statement */}
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-[5.2rem] leading-[1.15] tracking-tight max-w-4xl">
