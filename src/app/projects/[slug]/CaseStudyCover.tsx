@@ -14,7 +14,7 @@ export default function CaseStudyCover({ project }: { project: Project }) {
         <div className="w-full h-full bg-surface" />
       )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-bg from-30% via-bg/70 to-transparent pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 max-w-[1400px] mx-auto px-6 md:px-10 pb-10 md:pb-16 z-10">
         <h1 className="font-[family-name:var(--font-jakarta-var)] text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight">
           {project.title}
