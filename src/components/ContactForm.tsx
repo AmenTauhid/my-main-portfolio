@@ -2,8 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-const FORMSPREE_URL = `https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID}`;
+import { useForm, ValidationError } from "@formspree/react";
 
 export default function ContactForm({
   open,
@@ -12,7 +11,7 @@ export default function ContactForm({
   open: boolean;
   onClose: () => void;
 }) {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [state, handleFormspreeSubmit] = useForm("xjgozkdk");
   const [honeypot, setHoneypot] = useState("");
   const [loadTime] = useState(Date.now());
   const formRef = useRef<HTMLFormElement>(null);
@@ -52,34 +51,18 @@ export default function ContactForm({
     if (!form) return;
 
     const formData = new FormData(form);
-
-    // Bot check 3: empty required fields
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const message = formData.get("message") as string;
+
+    // Bot check 3: empty required fields
     if (!name.trim() || !email.trim() || !message.trim()) return;
 
     // Bot check 4: basic email format
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
 
-    setStatus("sending");
-
-    try {
-      const res = await fetch(FORMSPREE_URL, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
-
-      if (res.ok) {
-        setStatus("sent");
-        form.reset();
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
+    // Pass to Formspree
+    await handleFormspreeSubmit(e);
   };
 
   return (
@@ -115,7 +98,7 @@ export default function ContactForm({
               </button>
             </div>
 
-            {status === "sent" ? (
+            {state.succeeded ? (
               <div className="py-8 text-center">
                 <p className="text-accent text-2xl mb-2">✓</p>
                 <p className="font-[family-name:var(--font-jakarta-var)] font-medium">
@@ -156,6 +139,7 @@ export default function ContactForm({
                     className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-sm text-text placeholder:text-text-secondary/50 focus:outline-none focus:border-accent transition-colors"
                     placeholder="Your name"
                   />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} className="text-xs text-red-500 mt-1" />
                 </div>
 
                 <div>
@@ -170,6 +154,7 @@ export default function ContactForm({
                     className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-sm text-text placeholder:text-text-secondary/50 focus:outline-none focus:border-accent transition-colors"
                     placeholder="you@example.com"
                   />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-500 mt-1" />
                 </div>
 
                 <div>
@@ -184,21 +169,18 @@ export default function ContactForm({
                     className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-sm text-text placeholder:text-text-secondary/50 focus:outline-none focus:border-accent transition-colors resize-none"
                     placeholder="What's on your mind?"
                   />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-500 mt-1" />
                 </div>
 
                 <button
                   type="submit"
-                  disabled={status === "sending"}
+                  disabled={state.submitting}
                   className="w-full py-2.5 rounded-full bg-text text-bg text-sm font-medium hover:bg-accent hover:text-accent-dark transition-all duration-300 disabled:opacity-50"
                 >
-                  {status === "sending" ? "Sending..." : "Send message"}
+                  {state.submitting ? "Sending..." : "Send message"}
                 </button>
 
-                {status === "error" && (
-                  <p className="text-sm text-red-500 text-center">
-                    Something went wrong. Try again or email me directly.
-                  </p>
-                )}
+                <ValidationError errors={state.errors} className="text-sm text-red-500 text-center" />
               </form>
             )}
           </motion.div>
