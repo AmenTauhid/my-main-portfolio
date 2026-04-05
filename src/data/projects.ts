@@ -318,7 +318,7 @@ export const projects: Project[] = [
       "GitHub Pages",
     ],
     coverImage: "",
-    githubUrl: "https://github.com/AmenTauhid/amentauhid.github.io",
+    githubUrl: "https://github.com/AmenTauhid/AmenTauhid.github.io",
     metrics: [
       { value: "Chat", label: "Conversational UI pattern" },
       { value: "Apple", label: "Inspired design language" },
