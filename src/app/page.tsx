@@ -1,14 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import BlurFade from "@/components/BlurFade";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedAvatar from "@/components/AnimatedAvatar";
 import ProjectCard from "@/components/ProjectCard";
 import WorkHistory from "@/components/WorkHistory";
 import BackstorySection from "@/components/BackstorySection";
+import ContactForm from "@/components/ContactForm";
 import { projects } from "@/data/projects";
 
 export default function Home() {
+  const [contactOpen, setContactOpen] = useState(false);
+
   return (
     <div className="min-h-screen">
       {/* ====== Hero Section ====== */}
@@ -18,12 +22,12 @@ export default function Home() {
           <div className="flex items-start justify-between mb-12 md:mb-20">
             <AnimatedAvatar />
 
-            <a
-              href="mailto:hello@example.com"
+            <button
+              onClick={() => setContactOpen(true)}
               className="hidden sm:inline-flex items-center gap-2 px-6 py-3 rounded-full bg-text text-bg text-sm font-medium hover:bg-accent hover:text-accent-dark transition-all duration-300"
             >
               Get in touch
-            </a>
+            </button>
           </div>
 
           {/* Name */}
@@ -78,12 +82,12 @@ export default function Home() {
             >
               GitHub ↗
             </a>
-            <a
-              href="mailto:hello@example.com"
+            <button
+              onClick={() => setContactOpen(true)}
               className="sm:hidden inline-flex items-center gap-2 ml-auto px-5 py-2.5 rounded-full bg-text text-bg text-sm font-medium hover:bg-accent hover:text-accent-dark transition-all duration-300"
             >
               Get in touch
-            </a>
+            </button>
           </div>
         </section>
       </BlurFade>
@@ -119,6 +123,9 @@ export default function Home() {
       <div className="pb-24 md:pb-32">
         <BackstorySection />
       </div>
+
+      {/* ====== Contact Modal ====== */}
+      <ContactForm open={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   );
 }
