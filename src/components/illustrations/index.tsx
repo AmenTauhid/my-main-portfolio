@@ -4,6 +4,7 @@ import ForkableArt from "./ForkableArt";
 import ChronoscopeArt from "./ChronoscopeArt";
 import TrackThatStreetArt from "./TrackThatStreetArt";
 import PharmaTrackArt from "./PharmaTrackArt";
+import GithubPortfolioArt from "./GithubPortfolioArt";
 
 export const projectIllustrations: Record<string, React.ComponentType<{ className?: string }>> = {
   retailpulse: RetailPulseArt,
@@ -12,4 +13,5 @@ export const projectIllustrations: Record<string, React.ComponentType<{ classNam
   chronoscope: ChronoscopeArt,
   trackthatstreet: TrackThatStreetArt,
   pharmatrack: PharmaTrackArt,
+  "github-portfolio": GithubPortfolioArt,
 };

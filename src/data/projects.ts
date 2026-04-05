@@ -304,4 +304,47 @@ export const projects: Project[] = [
       "Building both sides of a system (web portal + mobile app) gives you a much better understanding of API design than building just one.",
     ],
   },
+  {
+    slug: "github-portfolio",
+    title: "Apple-Style Portfolio",
+    subtitle: "My GitHub Pages portfolio, inspired by Apple's chat interface",
+    description:
+      "A personal portfolio site built as a conversational chat interface, taking cues from Apple's iMessage design language. It walks through my projects, work history, skills, and story in a format that feels more like a conversation than a resume.",
+    year: "2025",
+    disciplines: [
+      "Web Development",
+      "UI Design",
+      "HTML/CSS",
+      "GitHub Pages",
+    ],
+    coverImage: "",
+    githubUrl: "https://github.com/AmenTauhid/amentauhid.github.io",
+    metrics: [
+      { value: "Chat", label: "Conversational UI pattern" },
+      { value: "Apple", label: "Inspired design language" },
+      { value: "6", label: "Projects showcased" },
+      { value: "Live", label: "Deployed on GitHub Pages" },
+    ],
+    sections: [
+      {
+        heading: "The concept",
+        body: "Most developer portfolios look the same. I wanted mine to feel different, so I built it as a chat interface where visitors scroll through a conversation that reveals my work, skills, and background. It borrows the visual style of Apple's iMessage, with chat bubbles, subtle animations, and a clean minimal layout.",
+        image: "placeholder",
+      },
+      {
+        heading: "How it's structured",
+        body: "The site has emoji-labeled navigation sections for Projects, Work, Skills, and Story. Each section presents content as chat messages, mixing left-aligned and right-aligned bubbles to create a conversational flow. There's also a sound theme toggle for an extra bit of polish.",
+        image: "placeholder",
+      },
+      {
+        heading: "Keeping it simple",
+        body: "It's a static site hosted on GitHub Pages. No frameworks, no build step, just clean HTML, CSS, and JavaScript. Sometimes the simplest approach is the right one, especially for something that just needs to load fast and look good.",
+      },
+    ],
+    learnings: [
+      "Conversational UI is a surprisingly good format for portfolios. People are used to reading chat messages, so the content feels natural to consume.",
+      "Constraints force creativity. Working without a framework meant every animation and interaction had to be hand-built, which made me more intentional about what to include.",
+      "A portfolio site doesn't have to look like every other portfolio site. The format itself can show personality.",
+    ],
+  },
 ];
