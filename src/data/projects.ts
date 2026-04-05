@@ -306,8 +306,8 @@ export const projects: Project[] = [
   },
   {
     slug: "github-portfolio",
-    title: "Apple-Style Portfolio",
-    subtitle: "My GitHub Pages portfolio, inspired by Apple's chat interface",
+    title: "iMessage-Style Portfolio",
+    subtitle: "My GitHub Pages portfolio, designed like an iMessage conversation",
     description:
       "A personal portfolio site built as a conversational chat interface, taking cues from Apple's iMessage design language. It walks through my projects, work history, skills, and story in a format that feels more like a conversation than a resume.",
     year: "2025",
