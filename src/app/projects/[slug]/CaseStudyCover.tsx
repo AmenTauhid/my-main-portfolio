@@ -22,14 +22,26 @@ export default function CaseStudyCover({ project }: { project: Project }) {
         <p className="mt-3 text-lg md:text-xl text-text-secondary max-w-2xl">
           {project.subtitle}
         </p>
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 mt-5 px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:border-accent hover:text-accent transition-colors"
-        >
-          View on GitHub <span>↗</span>
-        </a>
+        <div className="flex flex-wrap items-center gap-3 mt-5">
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+          >
+            View on GitHub <span>↗</span>
+          </a>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent text-accent-dark text-sm font-medium hover:bg-accent/80 transition-colors"
+            >
+              Visit site <span>↗</span>
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

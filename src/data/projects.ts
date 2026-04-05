@@ -7,6 +7,7 @@ export type Project = {
   disciplines: string[];
   coverImage: string;
   githubUrl: string;
+  liveUrl?: string;
   metrics: { value: string; label: string }[];
   sections: {
     heading: string;
@@ -319,6 +320,7 @@ export const projects: Project[] = [
     ],
     coverImage: "",
     githubUrl: "https://github.com/AmenTauhid/AmenTauhid.github.io",
+    liveUrl: "https://amentauhid.github.io",
     metrics: [
       { value: "Chat", label: "Conversational UI pattern" },
       { value: "Apple", label: "Inspired design language" },
