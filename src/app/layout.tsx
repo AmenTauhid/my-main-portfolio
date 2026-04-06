@@ -7,8 +7,11 @@ import {
 } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import CommandPalette from "@/components/CommandPalette";
+import CursorGlow from "@/components/CursorGlow";
 import "./globals.css";
 
 const inter = Inter({
@@ -37,6 +40,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aymantauhid.com"),
   title: "Ayman Tauhid | a builder",
   description: "Full stack, mobile, and ML. I like building the whole thing.",
   openGraph: {
@@ -65,7 +69,10 @@ export default function RootLayout({
           <Navbar />
           <main id="main-content" className="pt-16">{children}</main>
           <Footer />
+          <CommandPalette />
+          <CursorGlow />
           <SpeedInsights />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

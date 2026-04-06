@@ -3,6 +3,7 @@ import { projects } from "@/data/projects";
 import type { Metadata } from "next";
 import CaseStudyContent from "./CaseStudyContent";
 import CaseStudyCover from "./CaseStudyCover";
+import PageTransition from "@/components/PageTransition";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -37,12 +38,14 @@ export default async function ProjectPage({ params }: Props) {
   const nextProject = projects[(currentIndex + 1) % projects.length];
 
   return (
-    <div className="min-h-screen">
-      {/* Cover with illustration */}
-      <CaseStudyCover project={project} />
+    <PageTransition>
+      <div className="min-h-screen">
+        {/* Cover with illustration */}
+        <CaseStudyCover project={project} />
 
-      {/* Client-side animated content */}
-      <CaseStudyContent project={project} nextProject={nextProject} />
-    </div>
+        {/* Client-side animated content */}
+        <CaseStudyContent project={project} nextProject={nextProject} />
+      </div>
+    </PageTransition>
   );
 }
