@@ -1,35 +1,19 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import BlurFade from "@/components/BlurFade";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedAvatar from "@/components/AnimatedAvatar";
 import ProjectCard from "@/components/ProjectCard";
-import ProjectFilter from "@/components/ProjectFilter";
 import WorkHistory from "@/components/WorkHistory";
 import BackstorySection from "@/components/BackstorySection";
 import TechStack from "@/components/TechStack";
-import Testimonials from "@/components/Testimonials";
 import ContactForm from "@/components/ContactForm";
 import PageTransition from "@/components/PageTransition";
 import { projects } from "@/data/projects";
 
-const allDisciplines = Array.from(
-  new Set(projects.flatMap((p) => p.disciplines))
-);
-const categories = ["All", ...allDisciplines];
-
 export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState("All");
-
-  const filteredProjects = useMemo(
-    () =>
-      activeFilter === "All"
-        ? projects
-        : projects.filter((p) => p.disciplines.includes(activeFilter)),
-    [activeFilter]
-  );
 
   return (
     <PageTransition>
@@ -148,14 +132,8 @@ export default function Home() {
             </h2>
           </ScrollReveal>
 
-          <ProjectFilter
-            categories={categories}
-            active={activeFilter}
-            onChange={setActiveFilter}
-          />
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-            {filteredProjects.map((project, i) => (
+            {projects.map((project, i) => (
               <ProjectCard
                 key={project.slug}
                 slug={project.slug}
@@ -166,12 +144,6 @@ export default function Home() {
               />
             ))}
           </div>
-
-          {filteredProjects.length === 0 && (
-            <p className="text-center text-text-secondary py-16 text-sm">
-              No projects match this filter.
-            </p>
-          )}
         </section>
 
         {/* ====== Work History ====== */}
@@ -182,11 +154,6 @@ export default function Home() {
         {/* ====== Tech Stack ====== */}
         <div id="stack" className="pb-24 md:pb-32">
           <TechStack />
-        </div>
-
-        {/* ====== Testimonials ====== */}
-        <div className="pb-24 md:pb-32">
-          <Testimonials />
         </div>
 
         {/* ====== Backstory ====== */}

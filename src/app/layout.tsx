@@ -11,7 +11,6 @@ import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
-import CursorGlow from "@/components/CursorGlow";
 import "./globals.css";
 
 const inter = Inter({
@@ -70,7 +69,6 @@ export default function RootLayout({
           <main id="main-content" className="pt-16">{children}</main>
           <Footer />
           <CommandPalette />
-          <CursorGlow />
           <SpeedInsights />
           <Analytics />
         </ThemeProvider>

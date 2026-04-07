@@ -56,11 +56,8 @@ export default function WorkHistory() {
         {roles.map((role, i) => (
           <ScrollReveal key={role.company} delay={i * 0.06}>
             <div className="grid grid-cols-1 sm:grid-cols-[45%_40%_15%] gap-2 sm:gap-0 items-baseline py-6 border-b border-border">
-              <span className="text-base md:text-lg text-text flex items-center gap-2">
+              <span className="text-base md:text-lg text-text">
                 {role.description}
-                {role.current && (
-                  <span className="inline-block w-2 h-2 rounded-full bg-accent shrink-0" title="Current role" />
-                )}
               </span>
               <span className="font-[family-name:var(--font-jakarta-var)] text-base md:text-lg font-medium">
                 {role.company}
