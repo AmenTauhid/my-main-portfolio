@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BlurFade from "@/components/BlurFade";
 import ScrollReveal from "@/components/ScrollReveal";
 import AnimatedAvatar from "@/components/AnimatedAvatar";
@@ -11,6 +11,21 @@ import TechStack from "@/components/TechStack";
 import ContactForm from "@/components/ContactForm";
 import PageTransition from "@/components/PageTransition";
 import { projects } from "@/data/projects";
+
+function KbdHint() {
+  const [isMac, setIsMac] = useState(true);
+  useEffect(() => {
+    setIsMac(navigator.platform.toUpperCase().includes("MAC"));
+  }, []);
+  return (
+    <div className="mt-6 flex items-center gap-2">
+      <kbd className="px-2 py-1 rounded text-[10px] text-text-secondary/60 border border-border/60 font-[family-name:var(--font-jetbrains-var)]">
+        {isMac ? "⌘" : "Ctrl+"}K
+      </kbd>
+      <span className="text-[11px] text-text-secondary/50">to navigate quickly</span>
+    </div>
+  );
+}
 
 export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
@@ -115,12 +130,7 @@ export default function Home() {
             </div>
 
             {/* Cmd+K hint */}
-            <div className="mt-6 flex items-center gap-2">
-              <kbd className="px-2 py-1 rounded text-[10px] text-text-secondary/60 border border-border/60 font-[family-name:var(--font-jetbrains-var)]">
-                ⌘K
-              </kbd>
-              <span className="text-[11px] text-text-secondary/50">to navigate quickly</span>
-            </div>
+            <KbdHint />
           </section>
         </BlurFade>
 
