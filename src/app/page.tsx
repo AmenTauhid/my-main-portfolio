@@ -90,6 +90,8 @@ export default function Home() {
             <p className="mt-8 md:mt-12 text-sm sm:text-base md:text-lg text-text-secondary max-w-xl leading-relaxed">
               Full stack, mobile, and ML. I like working across the whole stack
               because the best products come from people who understand every layer.
+              I&apos;m passionate about turning messy, real-world problems into
+              clean tools that people actually want to use.
             </p>
 
             {/* Links row */}
