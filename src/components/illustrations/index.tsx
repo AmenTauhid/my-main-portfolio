@@ -5,6 +5,7 @@ import ChronoscopeArt from "./ChronoscopeArt";
 import TrackThatStreetArt from "./TrackThatStreetArt";
 import PharmaTrackArt from "./PharmaTrackArt";
 import GithubPortfolioArt from "./GithubPortfolioArt";
+import LinkCleanerArt from "./LinkCleanerArt";
 
 export const projectIllustrations: Record<string, React.ComponentType<{ className?: string }>> = {
   retailpulse: RetailPulseArt,
@@ -14,4 +15,5 @@ export const projectIllustrations: Record<string, React.ComponentType<{ classNam
   trackthatstreet: TrackThatStreetArt,
   pharmatrack: PharmaTrackArt,
   "github-portfolio": GithubPortfolioArt,
+  linkcleaner: LinkCleanerArt,
 };

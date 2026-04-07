@@ -349,4 +349,47 @@ export const projects: Project[] = [
       "A portfolio site doesn't have to look like every other portfolio site. The format itself can show personality.",
     ],
   },
+  {
+    slug: "linkcleaner",
+    title: "LinkCleaner",
+    subtitle: "Browser extension that strips tracking junk from URLs as you browse",
+    description:
+      "An Edge extension that automatically removes 50+ tracking parameters from URLs in real time. No more utm_source, fbclid, or gclid cluttering your links. Works at the network level so pages load with clean URLs from the start.",
+    year: "2026",
+    disciplines: [
+      "Browser Extension",
+      "JavaScript",
+      "Privacy",
+      "Manifest V3",
+    ],
+    coverImage: "",
+    githubUrl: "https://github.com/AmenTauhid/LinkCleaner",
+    metrics: [
+      { value: "50+", label: "Tracking params stripped" },
+      { value: "v2", label: "Manifest V3 extension" },
+      { value: "0", label: "Dependencies" },
+      { value: "Real-time", label: "Network-level cleaning" },
+    ],
+    sections: [
+      {
+        heading: "Why I made this",
+        body: "Every link you click is stuffed with tracking parameters that tell advertisers where you came from, what campaign sent you, and which ad you clicked. I got tired of sharing ugly links full of utm_source and fbclid garbage, so I built something that cleans them automatically.",
+        image: "placeholder",
+      },
+      {
+        heading: "How it works",
+        body: "The extension uses Chrome's declarativeNetRequest API to strip tracking parameters at the network level, before the page even loads. That means no page reload, no delay, no JavaScript injection. It also tracks how many params it's cleaned and shows the count on the extension badge.",
+        image: "placeholder",
+      },
+      {
+        heading: "Features",
+        body: "Toggle cleaning on and off from the popup, right-click any link to copy a clean version, see per-page and total stats. It handles UTM, Facebook, Google, Microsoft, HubSpot, social media, and Mailchimp trackers out of the box. Zero dependencies, just vanilla JS, HTML, and CSS.",
+      },
+    ],
+    learnings: [
+      "declarativeNetRequest is way more performant than injecting scripts. It works at the browser's network layer so there's zero overhead on page load.",
+      "Privacy tools need to be invisible to be useful. If it requires any effort from the user, they'll stop using it.",
+      "Manifest V3 has its quirks but the declarative approach forces you to think about what you actually need to intercept.",
+    ],
+  },
 ];
