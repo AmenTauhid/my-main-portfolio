@@ -16,11 +16,11 @@ export default function MetricCard({ value, label, index }: MetricCardProps) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.5,
-        delay: index * 0.1,
+        duration: 0.3,
+        delay: index * 0.06,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       className="text-center md:text-left"

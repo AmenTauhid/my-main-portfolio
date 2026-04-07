@@ -11,10 +11,10 @@ interface ScrollRevealProps {
 }
 
 const directionMap = {
-  up: { y: 30 },
-  down: { y: -30 },
-  left: { x: 30 },
-  right: { x: -30 },
+  up: { y: 16 },
+  down: { y: -16 },
+  left: { x: 16 },
+  right: { x: -16 },
 };
 
 export default function ScrollReveal({
@@ -24,7 +24,7 @@ export default function ScrollReveal({
   direction = "up",
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
 
   const initialOffset = directionMap[direction];
 
@@ -34,8 +34,8 @@ export default function ScrollReveal({
       initial={{ opacity: 0, ...initialOffset }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
       transition={{
-        duration: 0.6,
-        delay,
+        duration: 0.35,
+        delay: delay * 0.6,
         ease: [0.25, 0.1, 0.25, 1],
       }}
       className={className}
