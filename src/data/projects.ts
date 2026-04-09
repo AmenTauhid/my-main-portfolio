@@ -354,7 +354,7 @@ export const projects: Project[] = [
     title: "LinkCleaner",
     subtitle: "Browser extension that strips tracking junk from URLs as you browse",
     description:
-      "An Edge extension that automatically removes 50+ tracking parameters from URLs in real time. No more utm_source, fbclid, or gclid cluttering your links. Works at the network level so pages load with clean URLs from the start.",
+      "A browser extension that automatically removes 50+ tracking parameters from URLs in real time. No more utm_source, fbclid, or gclid cluttering your links. Works at the network level so pages load with clean URLs from the start.",
     year: "2026",
     disciplines: [
       "Browser Extension",
@@ -395,7 +395,7 @@ export const projects: Project[] = [
   {
     slug: "ytgrab",
     title: "YTGrab",
-    subtitle: "Edge extension that adds a one-click MP3 download button to YouTube",
+    subtitle: "Browser extension that adds a one-click MP3 download button to YouTube",
     description:
       "A browser extension paired with a local FastAPI server that lets you download any YouTube video as an MP3. It injects a download button right into YouTube's UI and handles conversion locally with yt-dlp and ffmpeg. Configurable bitrate, filename templates, and metadata embedding.",
     year: "2026",
