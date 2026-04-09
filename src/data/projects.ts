@@ -392,4 +392,133 @@ export const projects: Project[] = [
       "Manifest V3 has its quirks but the declarative approach forces you to think about what you actually need to intercept.",
     ],
   },
+  {
+    slug: "ytgrab",
+    title: "YTGrab",
+    subtitle: "Edge extension that adds a one-click MP3 download button to YouTube",
+    description:
+      "A browser extension paired with a local FastAPI server that lets you download any YouTube video as an MP3. It injects a download button right into YouTube's UI and handles conversion locally with yt-dlp and ffmpeg. Configurable bitrate, filename templates, and metadata embedding.",
+    year: "2026",
+    disciplines: [
+      "Browser Extension",
+      "JavaScript",
+      "Python",
+      "FastAPI",
+    ],
+    coverImage: "",
+    githubUrl: "https://github.com/AmenTauhid/YTGrab",
+    metrics: [
+      { value: "1-click", label: "Download from YouTube" },
+      { value: "MP3", label: "Audio conversion" },
+      { value: "Local", label: "No cloud, runs on your machine" },
+      { value: "v3", label: "Manifest V3 extension" },
+    ],
+    sections: [
+      {
+        heading: "The idea",
+        body: "I wanted a clean way to grab audio from YouTube without sketchy websites or bloated desktop apps. So I built an extension that adds a download button right next to the like and share buttons on any YouTube video page. One click, and you've got an MP3.",
+        image: "placeholder",
+      },
+      {
+        heading: "How it works",
+        body: "The extension injects a button into YouTube's UI and communicates with a local FastAPI server running on port 8899. The server uses yt-dlp to download the video and ffmpeg to convert it to MP3. Everything stays on your machine, nothing goes to a third-party server.",
+        image: "placeholder",
+      },
+      {
+        heading: "Customization",
+        body: "You can configure bitrate, toggle auto-download, set filename templates with tokens like {title} and {artist}, and choose whether to embed metadata and thumbnails. There's also a popup where you can paste URLs directly and a settings page for the power users.",
+      },
+    ],
+    learnings: [
+      "Browser extensions that talk to local servers are a surprisingly powerful pattern. You get the convenience of a browser UI with the full power of a Python backend.",
+      "Injecting UI into YouTube is fragile. Their DOM changes often, so the injection logic needs to be resilient to layout shifts.",
+      "Local-first tools are underrated. No cloud means no rate limits, no privacy concerns, and it works offline once the video is cached.",
+    ],
+  },
+  {
+    slug: "spectra",
+    title: "Spectra",
+    subtitle: "Turn any song into unique abstract wall art",
+    description:
+      "A Python CLI that generates one-of-a-kind abstract art from audio files. Feed it a song or a YouTube URL and it produces high-res artwork shaped by the music's frequency, rhythm, and energy. Five art styles, six color palettes, and output up to 6000px for print.",
+    year: "2026",
+    disciplines: [
+      "Python",
+      "Creative Coding",
+      "Audio Analysis",
+      "CLI Tool",
+    ],
+    coverImage: "",
+    githubUrl: "https://github.com/AmenTauhid/Spectra",
+    metrics: [
+      { value: "5", label: "Art styles" },
+      { value: "6000px", label: "Max resolution for print" },
+      { value: "YouTube", label: "Direct URL support" },
+      { value: "SVG", label: "Vector output option" },
+    ],
+    sections: [
+      {
+        heading: "Where this came from",
+        body: "I wanted to make something visual out of music. Not a visualizer that plays in real time, but a single piece of art that captures what a song sounds like. Something you could print and put on a wall.",
+        image: "placeholder",
+      },
+      {
+        heading: "How it analyzes audio",
+        body: "Spectra uses librosa to extract frequency spectrums, beat timing, tempo, spectral centroid (brightness), and energy curves from audio files. These features drive every visual decision: line lengths, particle positions, color choices, and shape density.",
+        image: "placeholder",
+      },
+      {
+        heading: "Styles and output",
+        body: "There are five styles: Radial Burst, Terrain Flow, Particle Galaxy, Geometric Mosaic, and Waveform Ribbon. Six palettes including an Auto mode that picks colors based on the song's tempo and energy. Output goes up to 6000px PNG or SVG vector. You can also batch-process an entire album folder.",
+      },
+    ],
+    learnings: [
+      "Audio feature extraction with librosa is surprisingly accessible. The hard part isn't getting the data, it's mapping it to visual parameters that actually look interesting.",
+      "Generative art needs constraints. Unlimited randomness produces noise. The best outputs came from tightly mapping specific audio features to specific visual properties.",
+      "Reproducibility matters for generative tools. Adding seed support meant users could regenerate their favorite outputs or share exact configurations.",
+    ],
+  },
+  {
+    slug: "ai-battle-royale",
+    title: "AI Battle Royale Simulator",
+    subtitle: "100 AI agents fight on a shrinking grid, then you analyze what survives",
+    description:
+      "A simulation engine where 100 AI agents with randomized stats and behavior trees compete on a 2D grid with a shrinking safe zone. Run thousands of simulations in parallel to find winning trait combinations, or use a genetic algorithm to evolve the optimal agent build.",
+    year: "2026",
+    disciplines: [
+      "Python",
+      "Simulation",
+      "Genetic Algorithms",
+      "Data Visualization",
+    ],
+    coverImage: "",
+    githubUrl: "https://github.com/AmenTauhid/AIBattleRoyaleSimulator",
+    metrics: [
+      { value: "100", label: "Agents per simulation" },
+      { value: "4", label: "Behavior types" },
+      { value: "1000+", label: "Parallel batch sims" },
+      { value: "7", label: "Analysis charts generated" },
+    ],
+    sections: [
+      {
+        heading: "What this is",
+        body: "I wanted to see what happens when you throw 100 AI agents into a battle royale and let evolution figure out the best build. Each agent has 6 stats (aggression, speed, stealth, accuracy, health, luck) and one of 4 behavior types. The shrinking zone forces them together.",
+        image: "placeholder",
+      },
+      {
+        heading: "Simulation engine",
+        body: "Each tick, agents move based on their behavior tree, engage in combat if they're close enough, and take zone damage if they're outside the safe area. Combat uses hit chance, crits, stealth escapes, and loot drops. You can run a single sim in the Pygame viewer or batch thousands in parallel using multiprocessing.",
+        image: "placeholder",
+      },
+      {
+        heading: "Genetic algorithm",
+        body: "The evolution mode runs hundreds of generations using tournament selection, crossover, and mutation to find the optimal stat distribution. Each generation runs multiple simulations per agent to reduce noise. It outputs a markdown report with the final evolved build and performance charts.",
+      },
+    ],
+    learnings: [
+      "Batch simulation with multiprocessing is the only way to get statistically meaningful results. A single run tells you almost nothing because of the randomness.",
+      "Behavior trees are a clean way to model decision-making. The switch from camper to hunter in the endgame was a one-line condition change.",
+      "The genetic algorithm consistently converges on high-speed, high-stealth builds. Aggression is overrated when the zone does most of the killing.",
+    ],
+  },
 ];

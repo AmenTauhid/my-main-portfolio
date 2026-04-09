@@ -6,6 +6,9 @@ import TrackThatStreetArt from "./TrackThatStreetArt";
 import PharmaTrackArt from "./PharmaTrackArt";
 import GithubPortfolioArt from "./GithubPortfolioArt";
 import LinkCleanerArt from "./LinkCleanerArt";
+import YTGrabArt from "./YTGrabArt";
+import SpectraArt from "./SpectraArt";
+import BattleRoyaleArt from "./BattleRoyaleArt";
 
 export const projectIllustrations: Record<string, React.ComponentType<{ className?: string }>> = {
   retailpulse: RetailPulseArt,
@@ -16,4 +19,7 @@ export const projectIllustrations: Record<string, React.ComponentType<{ classNam
   pharmatrack: PharmaTrackArt,
   "github-portfolio": GithubPortfolioArt,
   linkcleaner: LinkCleanerArt,
+  ytgrab: YTGrabArt,
+  spectra: SpectraArt,
+  "ai-battle-royale": BattleRoyaleArt,
 };
