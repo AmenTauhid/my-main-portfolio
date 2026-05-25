@@ -9,6 +9,7 @@ import LinkCleanerArt from "./LinkCleanerArt";
 import YTGrabArt from "./YTGrabArt";
 import SpectraArt from "./SpectraArt";
 import BattleRoyaleArt from "./BattleRoyaleArt";
+import ReadLaterArt from "./ReadLaterArt";
 
 export const projectIllustrations: Record<string, React.ComponentType<{ className?: string }>> = {
   retailpulse: RetailPulseArt,
@@ -22,4 +23,5 @@ export const projectIllustrations: Record<string, React.ComponentType<{ classNam
   ytgrab: YTGrabArt,
   spectra: SpectraArt,
   "ai-battle-royale": BattleRoyaleArt,
+  "read-later": ReadLaterArt,
 };
