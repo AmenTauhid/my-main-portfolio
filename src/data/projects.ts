@@ -521,47 +521,4 @@ export const projects: Project[] = [
       "The genetic algorithm consistently converges on high-speed, high-stealth builds. Aggression is overrated when the zone does most of the killing.",
     ],
   },
-  {
-    slug: "read-later",
-    title: "Read Later",
-    subtitle: "Browser extension that saves any tab to your Notion in one click",
-    description:
-      "A minimalist Chromium extension that saves the current tab into a Notion database, with optional tags and notes. A built-in side panel lets you search, filter, and triage everything you've saved. Two-way sync means edits in Notion show up in the panel and vice versa.",
-    year: "2026",
-    disciplines: [
-      "Browser Extension",
-      "TypeScript",
-      "Notion API",
-      "Manifest V3",
-    ],
-    coverImage: "",
-    githubUrl: "https://github.com/AmenTauhid/Read-Later",
-    metrics: [
-      { value: "1-click", label: "Save tab to Notion" },
-      { value: "2-way", label: "Sync with Notion edits" },
-      { value: "v3", label: "Manifest V3 extension" },
-      { value: "0", label: "Backend, no analytics" },
-    ],
-    sections: [
-      {
-        heading: "Why I built this",
-        body: "I already use Notion for everything, so dumping links into a separate read-later app always felt redundant. I wanted one button in the toolbar that drops the current tab straight into a Notion database, with the option to tag it or scribble a note on the way in. No new account, no extra inbox to babysit.",
-        image: "placeholder",
-      },
-      {
-        heading: "How it works",
-        body: "The toolbar popup grabs the current tab's title and URL, and a background service worker sends it through a typed wrapper around the Notion REST API. On first connect, the extension auto-provisions a database under the page you choose with the right schema (Title, URL, Saved, Status, Tags, Notes), so there's no manual setup. A side panel ships with the extension for search and Unread / Read / All filters.",
-        image: "placeholder",
-      },
-      {
-        heading: "Privacy by design",
-        body: "There's no backend, no analytics, and no third-party service. Your Notion token and database ID live in chrome.storage.local on your machine, and the only network call the extension ever makes is to api.notion.com. The service worker is the only place that touches the token at request time.",
-      },
-    ],
-    learnings: [
-      "Letting users bring their own Notion workspace removes a huge chunk of product complexity. No accounts, no backend, no database to maintain, and the data lives somewhere they already trust.",
-      "Auto-provisioning the database schema on first connect turned out to be the biggest UX win. Skipping that step would have meant a setup doc nobody reads.",
-      "Centralizing all Notion calls through a single typed wrapper made the rest of the codebase boring in the best way. The popup, side panel, and options page barely know Notion exists.",
-    ],
-  },
 ];
