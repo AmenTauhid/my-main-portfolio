@@ -4,10 +4,16 @@ import ScrollReveal from "./ScrollReveal";
 
 const roles = [
   {
+    description: "GenAI development",
+    company: "TCS Canada",
+    period: "2026",
+    current: true,
+  },
+  {
     description: "Full stack development",
     company: "Centre for Applied AI (UHN)",
     period: "2025",
-    current: true,
+    current: false,
   },
   {
     description: "Mobile development, iOS & Android",
