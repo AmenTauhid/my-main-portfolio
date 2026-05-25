@@ -6,7 +6,7 @@ const roles = [
   {
     description: "GenAI development",
     company: "TCS Canada",
-    period: "2026",
+    period: "2026 - Present",
     current: true,
   },
   {
